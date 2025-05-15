@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5.17日周六三天门</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .background-info {
+            text-align: center;
+            color: #666;
+            margin: 10px auto;
+            max-width: 430px;
+            font-size: 16px;
+            background-color: rgba(245, 245, 245, 0.8);
+            padding: 6px 12px
+        }
+        .time-line {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .time-line::before {
+            content: "⏰ ";
+            margin-right: 5px;
+        }
+        .bus-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .bus {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            margin-bottom: 10px;
+            justify-content: center;
+            width: 460px; /* 统一行宽 */
+        }
+        .seat {
+            width: 100px;
+            height: 60px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        .aisle {
+            width: 30px;
+            height: 60px;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .row-number {
+            width: 30px;
+            height: 60px;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+        }
+        .last-row {
+            margin-top: 20px;
+        }
+        .last-row .seat {
+            width: 86px; /* 调整最后一排座位宽度使总宽度与其他行一致 */
+        }
+        .controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+        button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .legend {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .hidden {
+            opacity: 0.3;
+        }
+        .highlight {
+            background-color: #ffeb3b;
+            box-shadow: 0 0 10px #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+    <h1>鄂GLU990，周六三天门</h1>
+    <div class="background-info">
+        <div class="time-line">7：30光谷地铁2号线华中科技大学C口（华科体育馆门口）</div>
+        <div class="time-line">7：50武昌地铁2号线/4号线洪山广场E口（洪山体育馆一号门）</div>
+        <div class="time-line">8：10汉口地铁1号线头道街A口</div>
+    </div>
+    <div class="controls">
+        <button onclick="showAll()">显示全部座位</button>
+        <button onclick="filterByLocation('华科')">华科</button>
+        <button onclick="filterByLocation('汉口')">汉口</button>
+        <button onclick="filterByLocation('武昌')">武昌</button>
+    </div>
+    <div class="bus-container">
+        <div class="bus" id="bus-seats">
+<div class="row"><div class="row-number">1</div><div class="seat" data-location="华科">1.容爽 (华科)</div><div class="seat" data-location="华科">2.阿甘 (华科)</div><div class="aisle">走道</div><div class="seat" data-location="汉口">3.欢 (汉口)</div><div class="seat" data-location="武昌">4.Y (武昌)</div></div><div class="row"><div class="row-number">2</div><div class="seat" data-location="武昌">5.7 (武昌)</div><div class="seat" data-location="武昌">6.7+1 (武昌)</div><div class="aisle">走道</div><div class="seat" data-location="华科">7.互拥互需同 (华科)</div><div class="seat" data-location="汉口">8.Chris (汉口)</div></div><div class="row"><div class="row-number">3</div><div class="seat" data-location="武昌">9.佐佐 (武昌)</div><div class="seat" data-location="武昌">10.佐佐+1 (武昌)</div><div class="aisle">走道</div><div class="seat" data-location="汉口">11.程子 (汉口)</div><div class="seat" data-location="武昌">12.龙龙 (武昌)</div></div><div class="row"><div class="row-number">4</div><div class="seat" data-location="汉口">13.黄欢 (汉口)</div><div class="seat" data-location="汉口">14.黄欢+1 (汉口)</div><div class="aisle">走道</div><div class="seat" data-location="华科">15.陈秋月 (华科)</div><div class="seat" data-location="华科">16.陈秋月+1 (华科)</div></div><div class="row"><div class="row-number">5</div><div class="seat" data-location="武昌">17.枝枝🍎 (武昌)</div><div class="seat" data-location="武昌">18.🌺Z菇凉🌺 (武昌)</div><div class="aisle">走道</div><div class="seat" data-location="华科">19.枝枝🍎+1 (华科)</div><div class="seat" data-location="汉口">20.不可预测的未来 (汉口)</div></div><div class="row"><div class="row-number">6</div><div class="seat" data-location="武昌">21.华中万象 (武昌)</div><div class="seat" data-location="武昌">22.华中万象+1 (武昌)</div><div class="aisle">走道</div><div class="seat" data-location="汉口">23.Rosy (汉口)</div><div class="seat" data-location="汉口">24.Rosy+1 (汉口)</div></div><div class="row"><div class="row-number">7</div><div class="seat" data-location="华科">25.Rosy+2 (华科)</div><div class="seat" data-location="汉口">26.sunshine (汉口)</div><div class="aisle">走道</div><div class="seat" data-location="武昌">27.素意 (武昌)</div><div class="seat" data-location="武昌">28.素意+1 (武昌)</div></div><div class="row"><div class="row-number">8</div><div class="seat" data-location="武昌">29.豆豆糖 (武昌)</div><div class="seat" data-location="武昌">30.豆豆糖+1 (武昌)</div><div class="aisle">走道</div><div class="seat" data-location="武昌">31.豆豆糖+2 (武昌)</div><div class="seat" data-location="武昌">32.豆豆糖+3 (武昌)</div></div><div class="row"><div class="row-number">9</div><div class="seat" data-location="汉口">33.周一 (汉口)</div><div class="seat" data-location="华科">34.ALeon (华科)</div><div class="aisle">走道</div><div class="seat" data-location="汉口">35.七颗球 (汉口)</div><div class="seat" data-location="武昌">36.Jane (武昌)</div></div><div class="row"><div class="row-number">10</div><div class="seat" data-location="汉口">37.睡懒觉的小哈哈 (汉口)</div><div class="seat" data-location="汉口">38.江风 (汉口)</div><div class="aisle">走道</div><div class="seat" data-location="武昌">39.李子 (武昌)</div><div class="seat" data-location="武昌">40.李子+1 (武昌)</div></div><div class="row"><div class="row-number">11</div><div class="seat" data-location="武昌">41.甜不辣 (武昌)</div><div class="seat" data-location="武昌">42.甜不辣+1 (武昌)</div><div class="aisle">走道</div><div class="seat" data-location="华科">43.聋的传人 (华科)</div><div class="seat" data-location="华科">44.聋的传人+1 (华科)</div></div><div class="row last-row"><div class="row-number">12</div><div class="seat" data-location="汉口">45.聋的传人+2 (汉口)</div><div class="seat" data-location="武昌">46.Linda (武昌)</div><div class="seat" data-location="武昌">47.Linda+1 (武昌)</div><div class="seat" data-location="汉口">48.随遇而安 (汉口)</div><div class="seat" data-location="汉口">49.随遇而安+1 (汉口)</div></div>
+        </div>
+    </div>
+
+    <script>
+        function showAll() {
+            const seats = document.querySelectorAll('.seat');
+            seats.forEach(seat => {
+                seat.style.opacity = '1';
+                seat.classList.remove('highlight');
+            });
+        }
+        
+        function filterByLocation(location) {
+            const seats = document.querySelectorAll('.seat');
+            seats.forEach(seat => {
+                const seatLocation = seat.getAttribute('data-location');
+                if (seatLocation === location) {
+                    seat.style.opacity = '1';
+                    seat.classList.add('highlight');
+                } else {
+                    seat.style.opacity = '0.3';
+                    seat.classList.remove('highlight');
+                }
+            });
+        }
+
+        function countLocations() {
+            const seats = document.querySelectorAll('.seat');
+            const counts = { '华科': 0, '汉口': 0, '武昌': 0 };
+            seats.forEach(seat => {
+                const location = seat.getAttribute('data-location');
+                if (counts[location] !== undefined) {
+                    counts[location]++;
+                }
+            });
+            document.querySelector('button[onclick="filterByLocation(\'华科\')"]').textContent = `华科（${counts['华科']}）`;
+            document.querySelector('button[onclick="filterByLocation(\'汉口\')"]').textContent = `汉口（${counts['汉口']}）`;
+            document.querySelector('button[onclick="filterByLocation(\'武昌\')"]').textContent = `武昌（${counts['武昌']}）`;
+        }
+
+        // 页面加载时统计地点人数
+        countLocations();
+    </script>
+</body>
+</html>
